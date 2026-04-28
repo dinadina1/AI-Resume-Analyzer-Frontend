@@ -15,6 +15,7 @@ import { Resumes } from '@/pages/resume/Resumes';
 import { Upload } from '@/pages/resume/Upload';
 import { Details } from '@/pages/resume/Details';
 import { Match } from '@/pages/jd/Match';
+import { JdHistory } from '@/pages/jd/JdHistory';
 import { AiSettings } from '@/pages/llm/AiSettings';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -48,6 +49,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="resume/upload" element={<Upload />} />
           <Route path="resume/:id" element={<Details />} />
           <Route path="jd/match" element={<Match />} />
+          <Route path="jd/history" element={<JdHistory />} />
           <Route path="llm" element={<AiSettings />} />
         </Route>
 

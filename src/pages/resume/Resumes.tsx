@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import {
   RiFileList2Line, RiAddLine, RiDeleteBin2Line,
-  RiEyeLine, RiTimeLine, RiSearchLine, RiFilterLine,
+  RiEyeLine, RiTimeLine, RiSearchLine, RiFilterLine, RiDownloadLine,
 } from 'react-icons/ri';
 import { ResumeService } from '@/services/resume.service';
 import { Loader, Button } from '@/components/atoms';
@@ -44,6 +44,15 @@ export const Resumes: React.FC = () => {
     },
     onError: () => toast.error('Failed to delete resume'),
   });
+
+  const handleDownload = async (id: string, name: string) => {
+    try {
+      await ResumeService.downloadResume(id, name);
+      toast.success('Download started!');
+    } catch {
+      toast.error('Failed to download resume');
+    }
+  };
 
   const resumes: any[] = data?.resumes ?? [];
 
@@ -174,6 +183,15 @@ export const Resumes: React.FC = () => {
                     >
                       <RiEyeLine className="text-lg" />
                     </Link>
+                    {resume.status === 'COMPLETED' && (
+                      <button
+                        onClick={() => handleDownload(resume.id, resume.originalName)}
+                        className="p-2 rounded-lg text-surface-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all"
+                        title="Download PDF"
+                      >
+                        <RiDownloadLine className="text-lg" />
+                      </button>
+                    )}
                     {confirmDelete === resume.id ? (
                       <div className="flex items-center gap-2">
                         <button

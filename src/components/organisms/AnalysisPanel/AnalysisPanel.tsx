@@ -69,7 +69,7 @@ export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ report }) => {
             <YAxis dataKey="name" type="category" tick={{ fill: '#94a3b8', fontSize: 12 }} width={80} />
             <Tooltip
               contentStyle={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: '8px', color: '#fff' }}
-              formatter={(val: number, name: string, props) => [`${val}/${props.payload.max}`, 'Score']}
+              formatter={(val, _name, item) => [`${Number(val ?? 0)}/${(item.payload as any)?.max ?? 100}`, 'Score']}
             />
             <Bar dataKey="score" radius={[0, 4, 4, 0]}>
               {sections.map((entry, i) => <Cell key={i} fill={entry.color} />)}

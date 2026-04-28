@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { RiDashboardLine, RiFileList2Line, RiUploadCloud2Line, RiBriefcaseLine, RiRobot2Line, RiLogoutBoxLine } from 'react-icons/ri';
+import { RiDashboardLine, RiFileList2Line, RiUploadCloud2Line, RiBriefcaseLine, RiRobot2Line, RiLogoutBoxLine, RiChatHistoryLine } from 'react-icons/ri';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { logout } from '@/features/auth/authSlice';
 import { AuthService } from '@/services/auth.service';
@@ -11,6 +11,7 @@ const navItems = [
   { path: '/resume/upload', label: 'Upload Resume', icon: RiUploadCloud2Line },
   { path: '/resume', label: 'My Resumes', icon: RiFileList2Line },
   { path: '/jd/match', label: 'JD Matching', icon: RiBriefcaseLine },
+  { path: "/jd/history", label: "JD History", icon: RiChatHistoryLine },
   { path: '/llm', label: 'AI Settings', icon: RiRobot2Line },
 ];
 
@@ -51,8 +52,8 @@ export const Navbar: React.FC = () => {
             path === '/resume'
               ? location.pathname === '/resume'
               : path === '/dashboard'
-              ? location.pathname === '/dashboard'
-              : location.pathname.startsWith(path);
+                ? location.pathname === '/dashboard'
+                : location.pathname.startsWith(path);
           return (
             <Link
               key={path}

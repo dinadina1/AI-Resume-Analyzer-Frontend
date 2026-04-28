@@ -282,14 +282,14 @@ export const Match: React.FC = () => {
               </div>
 
               {/* AI Insights */}
-              {result.aiInsights && result.aiInsights.length > 0 && (
+              {result.insights && result.insights.length > 0 && (
                 <div className="card p-5 animate-slide-up border-primary-600/30">
                   <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
                     <RiRobot2Line className="text-primary-400" />
                     AI Insights
                   </h3>
                   <div className="space-y-2">
-                    {result.aiInsights.map((insight: string, i: number) => (
+                    {result.insights.map((insight: string, i: number) => (
                       <div key={i} className="flex gap-2.5 text-sm text-surface-300">
                         <RiArrowRightLine className="text-primary-400 flex-shrink-0 mt-0.5" />
                         {insight}
@@ -313,6 +313,22 @@ export const Match: React.FC = () => {
                 </div>
               )}
 
+              {/* Matched keywords */}
+              {/* {
+                result.matchedKeywords && result.matchedKeywords.length > 0 && (
+                  <div className="card p-5 animate-slide-up">
+                    <h3 className="text-sm font-semibold text-white mb-3">
+                      ✅ Matched Keywords ({result.matchedKeywords.length})
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {result.matchedKeywords.map((k: string) => (
+                        <span key={k} className="badge badge-success capitalize">{k}</span>
+                      ))}
+                    </div>
+                  </div>
+                )
+              } */}
+
               {/* Missing Skills */}
               {result.missingSkills?.length > 0 && (
                 <div className="card p-5 animate-slide-up">
@@ -326,6 +342,51 @@ export const Match: React.FC = () => {
                   </div>
                 </div>
               )}
+
+              {/* Missing keywords */}
+              {
+                result.missingKeywords && result.missingKeywords.length > 0 && (
+                  <div className="card p-5 animate-slide-up">
+                    <h3 className="text-sm font-semibold text-white mb-3">
+                      ❌ Missing Keywords ({result.missingKeywords.length})
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {result.missingKeywords.map((k: string) => (
+                        <span key={k} className="badge badge-danger capitalize">{k}</span>
+                      ))}
+                    </div>
+                  </div>
+                )
+              }
+
+              {/* Suggested keywords */}
+              {result.suggestedKeywords && result.suggestedKeywords.length > 0 && (
+                <div className="card p-5 animate-slide-up">
+                  <h3 className="text-sm font-semibold text-white mb-3">
+                    ✅ Suggested Keywords ({result.suggestedKeywords.length})
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {result.suggestedKeywords.map((k: string) => (
+                      <span key={k} className="badge badge-success capitalize">{k}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* improvements */}
+              {result.improvements && result.improvements.length > 0 && (
+                <div className="card p-5 animate-slide-up">
+                  <h3 className="text-sm font-semibold text-white mb-3">
+                    ✅ Improvements ({result.improvements.length})
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {result.improvements.map((i: string) => (
+                      <span key={i} className="badge badge-success capitalize">{i}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
             </>
           )}
         </div>

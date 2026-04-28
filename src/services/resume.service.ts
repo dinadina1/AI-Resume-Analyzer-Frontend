@@ -31,4 +31,16 @@ export class ResumeService {
   static async deleteResume(id: string) {
     await api.delete(`/resumes/${id}`);
   }
+
+  static async downloadResume(id: string, fileName: string) {
+    const response = await api.get(`/resumes/${id}/download`, { responseType: 'blob' });
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', fileName.endsWith('.pdf') ? fileName : `${fileName}.pdf`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  }
 }

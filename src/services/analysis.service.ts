@@ -27,6 +27,11 @@ export class JdService {
     const { data } = await api.get('/job-descriptions/matches');
     return data.data;
   }
+
+  static async getMatchById(matchId: string) {
+    const { data } = await api.get(`/job-descriptions/matches/${matchId}`);
+    return data.data;
+  }
 }
 
 export class SuggestionService {
