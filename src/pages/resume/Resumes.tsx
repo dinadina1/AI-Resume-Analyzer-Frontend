@@ -57,7 +57,7 @@ export const Resumes: React.FC = () => {
   const resumes: any[] = data?.resumes ?? [];
 
   const filtered = resumes.filter((r) => {
-    const matchesSearch = r.originalName.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch = r.originalName?.toLowerCase().includes(search?.toLowerCase());
     const matchesStatus = statusFilter === 'ALL' || r.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
